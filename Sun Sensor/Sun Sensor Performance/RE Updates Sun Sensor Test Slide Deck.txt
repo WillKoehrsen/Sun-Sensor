@@ -1,0 +1,48 @@
+From:	Bullock, Daniel (MSFC-EV42)[Summer Intern Program]
+Sent:	Tuesday, August 02, 2016 2:08 PM
+To:	Heaton, Andrew F. (MSFC-EV42); Becker, Christopher M. (MSFC-EV42)
+Cc:	Edberg, Don (MSFC-EV42)[Faculty]
+Subject:	RE: Updates Sun Sensor Test Slide Deck
+Attachments:	Data_Presentation_08_02_16.pptx
+
+Gentlemen, 
+
+After discussing with Chris and looking back over the original data I made a mistake by inadvertently 
+scaling "sensor 3" by the wrong number on the first graph. I have corrected the issue and updated the 
+slide deck. Kudos to Chris to finding the issue, I think he would make a really good detective given his 
+attention to detail! 
+
+Don and I will run some "glinting" test tomorrow to see if it's going to be an issue. 
+
+Thanks again,
+Dan
+
+Daniel Bullock, Ph.D.
+4600/4327 
+MSFC Summer Faculty Fellow 
+(479) 886-9326
+ 
+From: Bullock, Daniel (MSFC-EV42)[Summer Intern Program] 
+Sent: Tuesday, August 02, 2016 11:37 AM 
+To: Heaton, Andrew F. (MSFC-EV42); Becker, Christopher M. (MSFC-EV42) 
+Cc: Edberg, Don (MSFC-EV42)[Faculty] 
+Subject: Updates Sun Sensor Test Slide Deck
+All, 
+
+I updated the slide deck for the sun sensor test. My original slides were misleading in that they gave the 
+impression that the sun sensor assembly was flat during the test when it was actually mounted at a 45 
+degree angle to mimic the way it is mounted on the NEA Scout. I've also included some backup slides 
+with drawings and pictures of the test.
+
+Chris, I have less than two weeks left so if there are any tests you would like us to run before I leave 
+please let me know. You mentioned before looking at "glint", we should brainstorm some ways to run 
+those tests. 
+
+Thanks,
+Dan
+
+
+Daniel Bullock, Ph.D.
+4600/4327 
+MSFC Summer Faculty Fellow 
+(479) 886-9326
