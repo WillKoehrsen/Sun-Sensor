@@ -5,14 +5,16 @@ import struct
 from collections import namedtuple
 import numpy as np 
 import matplotlib.pyplot as plt 
-import csv
+from matplotlib import style 
 import pandas as pd 
+from openpyxl import load_workbook 
 
 plt.axis()
 plt.ion()
 plt.title('Diode Readings')
 plt.xlabel('Time (sec)')
 plt.ylabel('Diode Reading')
+style.use('ggplot')
 
 def calcCRC8(crc8, data):
         polynomial = 0x1070 << 3
@@ -109,9 +111,8 @@ diode_readings = {'diode1': [], 'diode2': [], 'diode3': [], 'diode4': []}
 # time for plotting
 start_time = time.time()
 time_readings = []
-
 # Read data from XACT (data updated at 5 Hz)
-for i in range(100):
+for i in range(10):
         # Request data read
         readCmd = readWithHeadAndCRCCmdId + struct.pack('>H', readAddr) + struct.pack('>H', readLength)
         ser.write(readCmd)
@@ -154,23 +155,52 @@ for i in range(100):
                 #ser.write(rw1OpModeCmd)
                 #time.sleep(0.1)
         #    a = 1
-
         # dynamic plotting
+        style.use('ggplot')
         colors = {'diode1' : 'b', 'diode2': 'r', 'diode3': 'g', 'diode4': 'c'}
         for diode in diode_readings:
             plt.plot(time_readings, (diode_readings[diode]), color = colors[diode])
         
         plt.legend(['diode1', 'diode2', 'diode3', 'diode4'], loc = 1)
         plt.pause(0.01)
-        
+               
+ser.close() # close the port so the program can be run again 
 
-        
-ser.close()
-diode_readings['time'] = time_readings
+# create a DataFrame out of the dictionary
+
+diode_readings['Time'] = time_readings
 df = pd.DataFrame(diode_readings)
-df.set_index('time', inplace=True)
-df.to_csv('diode_readings.csv')
+df.set_index('Time', inplace=True)
+print(df)
+'''
+# List of the averages for the test. 
+averages = [df[key].describe()['mean'] for key in df]
+indexes = df.index.tolist()
+indexes.append('mean')
+df.reindex(indexes)
+# Adding the mean row to the bottom of the DataFrame
 
+i = 0
+for key in df:
+	df.set_value('mean', key, averages[i])
+	i += 1
+
+# Writing the data to an Excel file. 
+# If the Excel file already exists, add another sheet.
+try:
+	book = load_workbook('DiodeReadings1.xlsx')
+	writer = pd.ExcelWriter('DiodeReadings1.xlsx', engine='openpyxl')
+	writer.book = book
+	writer.sheets = dict((ws.title, ws) for ws in book.worksheets)
+	df.to_excel(writer, '90 Sun 0 Az') # Change the name of the sheet to correct configuration.
+
+# If the Excel file does not exist, it will be created. 	
+except: 
+	writer = pd.ExcelWriter('DiodeReadings1.xlsx', engine='openpyxl')
+	df.to_excel(writer, '90 Sun 180 Az') # Change the name of the sheet to correct configuration.
+
+writer.save()
+'''
 
 
 
